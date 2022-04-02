@@ -1,0 +1,46 @@
+{
+  "contacts": [
+    {
+      "name": "Adam Marcus",
+      "email": "adam123@gmail.com",
+      "contact": "83673677367635",
+      "id": 1
+    },
+    {
+      "name": "James Gun",
+      "email": "jamesbond@gmail.com",
+      "contact": "65365365",
+      "id": 5
+    },
+    {
+      "name": "Harry Potter",
+      "email": "harrypotter@gmail.com",
+      "contact": "1234567",
+      "id": 6
+    },
+    {
+      "name": "Wamera",
+      "email": "test@mail.com",
+      "contact": "12",
+      "id": 7
+    },
+    {
+      "name": "sdsd",
+      "email": "test@mail.com",
+      "contact": "12",
+      "id": 8
+    },
+    {
+      "name": "Wamera",
+      "email": "test@mail.com",
+      "contact": "54",
+      "id": 9
+    },
+    {
+      "name": "sdsd",
+      "email": "test@mail.com",
+      "contact": "1",
+      "id": 10
+    }
+  ]
+}
