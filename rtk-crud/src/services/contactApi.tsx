@@ -3,21 +3,41 @@ import { Contact } from '../model/contact.model';
 
 export const contactsApi = createApi({
     reducerPath: 'contactsApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000'
-    }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+    tagTypes : ['Contact'],
     endpoints: (builder) => ({
-        contacts: builder.query<Contact[], void>({
-            query: () => '/contacts',
-        }),
-        addContact: builder.mutation<{}, Contact>({
-            query: (contact) => ({
-              url: "/contacts",
-              method: "POST",
-              body: contact,
+            contacts: builder.query<Contact[], void>({
+                query: () => '/contacts',
+                providesTags: ['Contact'],
             }),
-        }),
+            contact : builder.query<Contact, string>({
+                query: (id) => `/contacts/${id}`,
+                providesTags: ['Contact'],
+            }),
+            addContact: builder.mutation<{}, Contact>({
+                query: (contact) => ({
+                url: "/contacts",
+                method: "POST",
+                body: contact,
+                }),
+                invalidatesTags: ['Contact'],
+            }),
+            deleteContact : builder.mutation<void, string>({
+                query: (id) => ({
+                    url: `/contacts/${id}`,
+                    method: "DELETE",
+                }),
+                invalidatesTags: ['Contact'],
+            }),
+            updateContact : builder.mutation<void, Contact>({
+                query: (contact) => ({
+                    url: `/contacts/${contact.id}`,
+                    method: "PUT",
+                    body: contact,
+                }),
+                invalidatesTags: ['Contact'],
+            }),
     }),
 });
 
-export const { useContactsQuery, useAddContactMutation } = contactsApi;
+export const { useContactsQuery, useContactQuery, useAddContactMutation, useDeleteContactMutation, useUpdateContactMutation } = contactsApi;

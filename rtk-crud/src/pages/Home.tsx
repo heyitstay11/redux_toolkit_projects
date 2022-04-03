@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useContactsQuery } from "../services/contactApi";
+import { useContactsQuery, useDeleteContactMutation } from "../services/contactApi";
 import { toast } from 'react-toastify';
 import './Home.css';
 
 const Home = () => {
     const { data, isLoading, error } = useContactsQuery();
-
+    const [ deleteContact ] = useDeleteContactMutation();
     useEffect(() => {
         if(error){
             toast.error('Something went error ')
@@ -17,6 +17,10 @@ const Home = () => {
         return (
             <div className="">Loading .....</div>
         )
+    }
+
+    const handleDelete = async (id: string) => {
+        await deleteContact(id);
     }
 
     return (
@@ -47,11 +51,11 @@ const Home = () => {
                                     <Link to={`/editContact/${id}`}>
                                         <div className="btn btn-edit">Edit</div>
                                     </Link>
-                                    <button className="btn btn-delete">
+                                    <button className="btn btn-delete" onClick={() => handleDelete(id)}>
                                         Delete
                                     </button>
                                     <Link to={`/info/${id}`}>
-                                        <div className="btn btn-view">Delete</div>
+                                        <div className="btn btn-view">Info</div>
                                     </Link>
                                 </td> 
                             </tr>
